@@ -1,0 +1,11 @@
+#service.properties.template
+#Create a file called service.properties with the parameters listed below
+
+#ServiceAuth format login:password
+ServiceAuth=
+
+GraphHost=
+GraphDatabase=
+GraphCatalog=
+GraphUser=
+GraphPassword=

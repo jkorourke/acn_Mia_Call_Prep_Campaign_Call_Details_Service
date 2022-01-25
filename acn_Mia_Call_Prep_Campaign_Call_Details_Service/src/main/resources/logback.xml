@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+<property name="LOG_PATH" value="/disk1/tomcat/logs/campaign_call_details_service" />
+
+	<appender name="FILE-ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_PATH}/campaign_call_details_service.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+
+			<!-- daily rollover -->
+			<fileNamePattern>${LOG_PATH}/campaign_call_details_service.%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+
+			<!-- keep 30 days' worth of history capped at 3GB total size -->
+			<maxHistory>10</maxHistory>
+			<totalSizeCap>1GB</totalSizeCap>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%-5level %d{yyyy-MM-dd HH:mm:ss.ddd} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="ASYNC"
+		class="ch.qos.logback.classic.AsyncAppender">
+		<appender-ref ref="FILE-ROLLING" />
+	</appender>
+
+
+	<logger name="call_per_campaign_service" level="debug"
+		additivity="false">
+		<appender-ref ref="FILE-ROLLING" />
+	</logger>
+
+</configuration>
